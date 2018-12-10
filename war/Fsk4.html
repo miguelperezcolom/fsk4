@@ -1,0 +1,1233 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--                                                               -->
+<!-- Consider inlining CSS to reduce the number of requested files -->
+<!--             
+    <!--                                                  
+    <link type="text/css" rel="stylesheet" href="Fsk4.css">
+    -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/hint.min.css" />
+
+<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
+
+
+<!--                                           -->
+<!-- Any title is fine                         -->
+<!--                                           -->
+<title>FesKteva</title>
+
+<!--                                           -->
+<!-- This script loads your compiled module.   -->
+<!-- If you add any GWT meta tags, they must   -->
+<!-- be added before this line.                -->
+<!--                                           -->
+<script type="text/javascript" language="javascript"
+	src="fsk4/fsk4.nocache.js"></script>
+
+
+
+<style type="text/css">
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+.dropdown-menu .sub-menu {
+	left: 100%;
+	position: absolute;
+	top: 0;
+	visibility: hidden;
+	margin-top: -1px;
+}
+
+.dropdown-menu li:hover .sub-menu {
+	visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.nav-tabs .dropdown-menu,.nav-pills .dropdown-menu,.navbar .dropdown-menu
+	{
+	margin-top: 0;
+}
+
+.navbar .sub-menu:before {
+	border-bottom: 7px solid transparent;
+	border-left: none;
+	border-right: 7px solid rgba(0, 0, 0, 0.2);
+	border-top: 7px solid transparent;
+	left: -7px;
+	top: 10px;
+}
+
+.navbar .sub-menu:after {
+	border-top: 6px solid transparent;
+	border-left: none;
+	border-right: 6px solid #fff;
+	border-bottom: 6px solid transparent;
+	left: 10px;
+	top: 11px;
+	left: -6px;
+}
+
+#contenedor-app {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: hidden;;
+}
+
+#contenedor-canvas {
+	position:absolute;
+	top: 41px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: hidden;;
+}
+#canvas {
+	position:absolute;
+	top: -50px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: hidden;;
+}
+
+#toolbar-herramientas {
+	position: absolute;
+	right: 15px;
+	top: 48px;
+	width: 224px;
+}
+
+#toolbar-herramientas2 {
+	position: absolute;
+	right: 15px;
+	top: 80px;
+	width: 224px;
+}
+
+#toolbar-perspectivas {
+	position: absolute;
+	right: 15px;
+	top: 112px;
+	width: 224px;
+}
+
+#toolbar-herramientas-privado {
+	position: absolute;
+	right: 15px;
+	top: 362px;
+	width: 224px;
+	display: none;
+}
+
+.preview {
+	display: none;
+	position: absolute;
+	right: 15px;
+	top: 166px;
+	width: 224px;
+	overflow: visible;
+}
+
+#previewmsg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	background: transparent
+		url(img/bg-blanco-70.png);
+	font-size: 11px;
+	padding: 2px 5px
+}
+
+.contenido-preview {
+}
+
+.preview-agrandar {
+position: absolute;
+top: 5px;
+right: 10px;
+width: 24px;
+height: 24px;
+cursor: pointer;
+background: transparent url(img/glyphicons_349_fullscreen.png) top left;
+opacity: .8;
+filter: alpha(opacity=80);
+}
+
+
+.toolbar {
+	background-color: #FCFCFC;
+	border: 1px solid #C2C2C2;
+	border-left: none;
+	border-top: none;
+	border-bottom: none;
+	position: absolute;
+	left: -280px;
+	top: 41px;
+	bottom: 0px;
+	width: 284px;
+	overflow: visible;
+}
+
+.botones-toolbar {
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: #FCFCFC;
+	border: 1px solid #C2C2C2;
+	border-left: none;
+	overflow: visible;	
+	position: absolute; 
+	right: -21px; 
+	top: 10px; 
+	width: 20px;
+}
+
+.botones-toolbar li {
+	line-height: 27px;
+}
+.botones-toolbar li a {
+	left: -4px;
+}
+
+.toolbar-boton.seleccionado {
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: #F7F0F0;
+	border: 1px solid #9B8686;
+	border-left: none;
+	
+	left: -11px;
+	width: 23px;
+	padding-left: 6px;
+	z-index: 100;
+}
+
+/*
+.toolbar-boton:hover {
+	background-color: #A1AD51;
+}
+
+.toolbar-boton:active {
+	background-color: #E0EB9B;
+}
+*/
+.contenido-toolbar {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	right: 3px;
+	border-right: 1px solid #9B8686;
+	border-left: none;
+	border-top: none;
+	border-bottom: none;
+	background-color: #F7F0F0;
+	padding: 3px;
+}
+
+#botones-toolbar-tooltipcontainer div.tooltip {
+	left: 0px;
+}
+
+.presupuesto-total-linea {
+	font-size: 20px;	
+}
+
+
+
+.modal-contenido {
+background: white;
+height: auto!important;
+padding: 19px;
+}
+
+.modal-contenedor {
+background: whitesmoke;
+border: 2px solid #E6E6E6;
+height: auto!important;
+overflow: visible;
+padding: 19px;
+box-shadow: 2px 2px 5px black;
+width: auto!important;
+z-index: 1000;
+}
+
+
+.modal-cerrar, .modal-cerrar:hover, .modal-cerrar:link, .modal-cerrar:visited {
+position: absolute;
+top: -12px;
+right: -12px;
+width: 34px;
+height: 37px;
+background: transparent url(img/modal-cerrar.png) left top no-repeat;
+padding: 0;
+text-indent: -200px;
+overflow: hidden;
+z-index: 100;
+}
+
+.seleccionarticulo-contenido {
+background: white;
+height: auto!important;
+padding: 19px;
+}
+
+.seleccionarticulo-contenedor {
+background: whitesmoke;
+border: 2px solid #E6E6E6;
+height: auto!important;
+overflow: visible;
+padding: 19px;
+box-shadow: 2px 2px 5px black;
+width: 568px;
+}
+
+
+.seleccionarticulo-cerrar, .seleccionarticulo-cerrar:hover, .seleccionarticulo-cerrar:link, .seleccionarticulo-cerrar:visited {
+position: absolute;
+top: -12px;
+right: -12px;
+width: 34px;
+height: 37px;
+background: transparent url(img/modal-cerrar.png) left top no-repeat;
+padding: 0;
+text-indent: -200px;
+overflow: hidden;
+z-index: 100;
+}
+
+
+select {
+	width: 140px;
+}
+
+input[type='text'] {
+	width: 140px;
+}
+
+input[type='text'].spinner {
+border: 0;
+background: 0;
+color: inherit;
+padding: 0;
+margin: .2em 0;
+vertical-align: middle;
+margin-left: .4em;
+margin-right: 22px;
+}
+
+
+.boton-textura {
+	border:2px solid #E6F1F2;
+	width: 60px;
+	height: 60px;
+}
+
+.boton-textura:hover {
+	border:2px solid red;
+}
+
+.boton-seleccionpatron {
+	border:2px solid #E6F1F2;
+	width: 60px;
+	height: 60px;
+}
+
+.boton-seleccionpatron:hover {
+	border:2px solid red;
+}
+
+.menu-boton {
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.menu-boton i {
+	zoom: 1.3;
+	margin-top: -1px;
+}
+
+
+.espera-contenido {
+background: white;
+height: auto!important;
+padding: 19px;
+}
+
+.espera-contenedor {
+background: whitesmoke;
+border: 2px solid #E6E6E6;
+height: auto!important;
+overflow: visible;
+padding: 19px;
+box-shadow: 2px 2px 5px black;
+width: auto!important;
+}
+
+#botontuopinion {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width:100px;
+	height:100px;
+	-webkit-border-radius: 100px 0px 0px 0px;
+	-moz-border-radius: 100px 0px 0px 0px;
+	border-radius: 100px 0px 0px 0px;
+	border-top:4px solid #FFFFFF;
+	border-left:4px solid #FFFFFF;
+	background-color:#FFB803;
+	font-weight: bold;
+	font-size: 20px;
+	color: #ffffff;
+	padding-left: 10px;
+	padding-top: 10px;
+	cursor: pointer;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.catalogo-lista-articulos {
+	border-top: 15px solid #cdcdcd;
+	border-bottom: 15px solid #cdcdcd;
+}
+
+
+
+body, div, a, h1, h2, h3, h4, table td, p {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+
+  /* No support for these yet, use at own risk */
+  -o-user-select: none;
+  user-select: none;          
+}
+
+</style>
+
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/globalize.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-tab.js"></script>
+	<script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+	<script type="text/javascript">
+    $(function () {
+        
+    	
+		$(".slider").each(function() {
+			$(this).hide();
+			//$(this).css("width", "50px");
+			var d = $( "<div><div id='slider-" + $(this).attr("id") + "' style='float:left; width: 140px;''></div><div id='valorslider-" + $(this).attr("id") + "' style='float:right;''></div></div>" ).insertAfter($(this)).slider({
+		        value:($(this).val())?$(this).val():100,
+		        min: ($(this).attr("data-min"))?parseFloat($(this).attr("data-min")):0,
+		        max: ($(this).attr("data-max"))?parseFloat($(this).attr("data-max")):100,
+		        step: ($(this).attr("data-step"))?parseFloat($(this).attr("data-step")):50,
+		        slide: function( event, ui ) {
+		        			$(this).prev().val(ui.value);
+		        			$(this).prev().change();
+		        	      }
+		        });
+			
+			$(this).change(function() {
+				$("#valorslider-" + $(this).attr("id") + "").html("" + $(this).val());
+				d.slider().slider( "value", parseFloat($(this).val()));
+			});
+        });
+    	
+    	
+        
+			
+        $(".spinner").each(function( index, element ) {
+            $(this).spinner({
+        	      step: 0.01,
+        	      culture: "en",
+        	      numberFormat: "n",
+        	      stop: function( event, ui ) {
+        	    	  $(this).val($(this).spinner( "value" ));
+        	    	  $(this).change();
+        	      }
+        	    });
+        });
+
+		
+
+    });
+    
+    
+    function xmodal() {
+    	$('#myModal').modal();
+    }
+    
+</script>
+
+
+
+</head>
+
+<!--                                           -->
+<!-- The body can have arbitrary html, or      -->
+<!-- you can leave the body empty if you want  -->
+<!-- to create a completely dynamic UI.        -->
+<!--                                           -->
+<body style="margin: 0px; overflow: hidden;">
+
+	<!-- OPTIONAL: include this if you want history support -->
+	<iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
+		style="position: absolute; width: 0; height: 0; border: 0"></iframe>
+
+	<!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+	<noscript>
+		<div
+			style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+			Your web browser must have JavaScript enabled in order for this
+			application to display correctly.</div>
+	</noscript>
+
+<!-- 
+	<h1>Hello, world!</h1>
+-->
+
+	<div id="contenedor-app">
+	<div id="contenedor-canvas">
+	
+			<div id="canvas"></div>
+	
+	</div>
+
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<a class="brand" href="http://www.feskteva.com">FesKteva (BETA)</a>
+			<ul class="nav" id="menusdesplegables" style="position:absolute; left: 50%; margin-left: -70px;">
+				<li class="dropdown"><a href="#">Fichero</a>
+				<ul class="dropdown-menu">
+						<li><a href="#" id="mnuevo">Nuevo</a></li>
+						<li><a href="#" id="mabrir">Abrir</a></li>
+						<li><a href="#" id="mguardar">Guardar</a></li>
+						<li><a href="#" id="mguardarcomo">Guardar como...</a></li>
+						<li><a href="#" id="mfoto" >Hacer foto HD</a></li>
+						<li><a href="#" id="m360">Hacer panorama 360º</a></li>
+						<li><a href="#" id="mblend">Exportar a Blender</a></li>
+						<li><a href="#" id="mcompartir">Compartir</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#">Help</a>
+				<ul class="dropdown-menu">
+						<li><a href="#" id="msugerencias">Sugerencias</a></li>
+						<li><a href="#" id="mcola">Ver cola renders</a></li>
+						<li><a href="#" id="mversion">Versión navegador</a></li>
+					</ul></li>
+
+				<li class="dropdown"><a href="#" id="etiquetaplantas">Planta 0</a>
+				<ul class="dropdown-menu" id="menuplantas">
+					</ul></li>
+
+			</ul>
+				<!-- 
+			<ul class="nav"  style="left: 30%;">
+				<li>
+					<button type="button" class="btn btn-info menu-boton"id="bvistaprevia"><i class="icon-eye-open"></i> Cámara</button>
+				</li>
+				<li>
+					<button type="button" class="btn btn-success menu-boton" id="bfoto" style="display: none;">
+						<i class="icon-camera" style="zoom: 1.5; margin-top: -2px;"></i> Foto HD
+					</button>
+				</li>
+				<li>
+					<button type="button" class="btn btn-info menu-boton" id="b360" style="display: none;"><i class="icon-repeat"></i> Foto 360º</button>
+				</li>
+				<li>
+					<button type="button" class="btn btn-warning menu-boton" id="bprint3d"><i class="icon-print"></i> DXF</button>
+				</li>
+			</ul>
+				-->
+
+			<div class="nav pull-right" style="margin-top: 8px;">				
+			<!-- 
+			     <a href="https://twitter.com/" class="linkoperativo" target="_blank"><img src="img/glyphicons_411_twitter.png"></a>
+			     -->
+			     <!-- 
+			     <a href="https://pinterest.com/" class="linkoperativo" target="_blank"><img src="img/glyphicons_411_twitter.png"></a>
+			     -->
+				<a href="https://www.facebook.com/pages/Feskteva/362101120584448" class="linkoperativo" target="_blank"><img src="img/glyphicons_410_facebook.png"></a>
+				<a href="mailto:pere@feskteva.com" class="linkoperativo" target="_blank"><img src="img/glyphicons_419_e-mail.png"></a>
+			</div>
+			
+				<div id="seccion_invitado">
+					<ul class="nav pull-right">
+							<li><a href="#" id="mlogin">Login</a></li>
+							<li><a href="#" id="mregistro">Registrarse</a></li>
+					</ul>
+				</div>
+				<div id="seccion_usuario" style="display: none;">
+				<ul class="nav pull-right"">
+					<li class="dropdown"><a href="#">Mi cuenta</a>
+					<ul class="dropdown-menu">
+							<li><a href="#" id="mperfil">Mi perfil</a></li>
+							<li><a href="#" id="mlogout">Logout</a></li>
+						</ul></li>
+					</ul>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+
+		<div class="preview">
+			<div class="contenido-preview" style=""><div id="previewmsg" style="display: none;"></div><img src="img/preview.png" id="previewimg"><div class="preview-agrandar"></div></div>
+			<div class="botones-preview"><div class="btn-group" style="margin-top: 4px;">
+			<!-- 
+  <button id="botonpreview" class="btn"><i class="icon-camera"></i> Instantánea</button>
+  -->
+  <button id="botonpreviewhd" class="btn btn-success" style="width: 219px;;"><i class="icon-camera"></i> Foto HD</button>
+</div></div>
+		</div>
+		
+			<div id="toolbar-herramientas" class="btn-group">
+			  <button class="btn hint--bottom" id="botoncamara" data-hint="Mostrar / ocultar cámara"><i class="icon-camera"></i></button>
+			  <button class="btn hint--bottom" id="botoncandado" data-hint="Bloquear paredes"><i class="icon-lock"></i></button>
+			  <button class="btn hint--bottom" id="botoniman" data-hint="Imán"><i class="icon-magnet"></i></button>
+			  <button class="btn hint--bottom" id="botonsol" data-hint="Luz solar"><img src="img/glyphicons_231_sun.png" style="width:14px;height:14px;"></button>
+			  <button class="btn hint--bottom" id="botonflash" data-hint="Flash"><img src="img/flash2.png" style="width:14px;height:14px;"></button>
+			  <!--
+			  <button class="btn hint--bottom" id="botonexterior" data-hint="Exterior / interior"><i class="icon-leaf"></i></button>
+			  -->
+			</div>
+		
+			<div id="toolbar-herramientas2" class="btn-group">
+			  <button class="btn hint--bottom" id="botonparedes" data-hint="Crear paredes"><img src="img/wall_black.png" style="width:14px;height:14px;"></button>
+			  <button class="btn hint--bottom" id="botonvolumen" data-hint="Crear volumen"><img src="img/glyphicons_096_vector_path_polygon.png" style="width:14px;height:14px;"></button>
+			  <button class="btn hint--bottom" id="botonescalera" data-hint="Crear escalera"><img src="img/107-Stairs.png" style="width:14px;height:14px;"></button>
+			</div>
+
+			<div id="toolbar-perspectivas" class="btn-group">
+			  <button class="btn hint--bottom btnperspectiva" id="botoncenital" data-hint="Cenital">Cen</button>
+			  <button class="btn hint--bottom btnperspectiva" id="botonarriba" data-hint="Arriba">Arr</button>
+			  <button class="btn hint--bottom btnperspectiva" id="botonderecha" data-hint="Derecha">Der</button>
+			  <button class="btn hint--bottom btnperspectiva" id="botonabajo" data-hint="Abajo">Aba</button>
+			  <button class="btn hint--bottom btnperspectiva" id="botonizquierda" data-hint="Izquierda">Izq</button>
+			</div>
+
+			<div id="toolbar-herramientas-privado" class="btn-group">
+			  <button class="btn hint--bottom" id="botonrotarz" data-hint="Rotar Z + 90"><i class="icon-repeat"></i>z</button>
+			  <button class="btn hint--bottom" id="botonrotarx" data-hint="Rotar X + 90"><i class="icon-repeat"></i>x</button>
+			  <button class="btn hint--bottom" id="botoneditar" data-hint="Modificar datos"><i class="icon-edit"></i></button>
+			</div>
+
+	<div class="toolbar" id="contenedor-herramientas">
+
+		<div class="botones-toolbar">
+			<div id="botones-toolbar-tooltipcontainer">
+				<ul style="list-style-type: none; margin: 10px 0px 10px 7px;">
+				<!-- 
+					<li><a href="#" class="toolbar-boton hint--left estructura"
+						data-hint="Estructura" data-toolbar="toolbar-estructura"><i class="icon-home"></i></a></li>
+						-->
+					<li><a href="#" class="toolbar-boton hint--right mobiliario"
+						data-hint="Mobiliario" data-toolbar="toolbar-mobiliario"><i class="icon-book"></i></a></li>
+					<li><a href="#" class="toolbar-boton hint--right texturas"
+						data-hint="Texturas" data-toolbar="toolbar-textura"><i class="icon-tint"></i></a></li>
+					<li><a href="#" class="toolbar-boton hint--right presupuesto"
+						data-hint="Presupuesto" data-toolbar="toolbar-presupuesto"><i class="icon-list"></i></a></li>
+					<li><a href="#" class="toolbar-boton hint--left info"
+						data-hint="Info / configuración" data-toolbar="toolbar-info"><i class="icon-info-sign"></i></a></li>
+					<li><a href="#" class="toolbar-boton hint--right ocultar"
+						id="tollbar-boton-ocultar" data-hint="Ocultar" style="margin-top: 20px; display: none;"><i
+							class="icon-arrow-left"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="contenido-toolbar" style="display: none;" id="toolbar-estructura">
+		</div>
+
+		<div class="contenido-toolbar" style="display: none; overflow: hidden;" id="toolbar-mobiliario"></div>
+
+		<div class="contenido-toolbar" style="display: none; overflow: hidden;" id="toolbar-textura"></div>
+
+		<div class="contenido-toolbar" style="display: none;" id="toolbar-presupuesto">
+			<h4>Presupuesto</h4>
+			<table>
+				<tr><td height="10px" nowrap="nowrap"><div id="totalpresupuesto" style="float: left;"></div><div style="float: right;"><input class="btn" type="button" value="PDF" id="boton-presupuestopdf"></div></td></tr>
+				<tr><td><div style="overflow: auto; position: absolute; bottom: 0px; left: 0px; right: 0px; top: 105px;" id="presupuesto-lineas">
+								
+				</div></td></tr>
+			</table>
+			
+		
+		</div>
+
+		<div class="contenido-toolbar" style="display: none;" id="toolbar-info">
+		
+				<div id="info-camara" style="display:none;" class="trozo-info">
+					<h1>Info cámara</h1>
+					<table class="table table-bordered">
+						<tr><td>Altura(m)</td><td><input type="text" id="camara_altura" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Tilt(º)</td><td><input type="text" id="camara_tilt" class="slider parametro-configuracion" data-min="-90" data-max="90" data-step="1"/></td></tr>
+						<tr><td>Radio apertura(m)</td><td><input type="text" id="camara_radioapertura" class="slider parametro-configuracion" data-min="0" data-max="0.005" data-step="0.00001"/></td></tr>
+						<tr><td>Ancho sensor(m)</td><td><input type="text" id="camara_anchosensor" class="slider parametro-configuracion" data-min="0" data-max="0.05" data-step="0.001"/></td></tr>
+						<tr><td>Distancia sensor(m)</td><td><input type="text" id="camara_distanciasensor" class="slider parametro-configuracion" data-min="0" data-max="0.05" data-step="0.001"/></td></tr>
+						<tr><td>Tiempo exposición(s)</td><td><input type="text" id="camara_tiempoexposicion" class="slider parametro-configuracion" data-min="0" data-max="0.8" data-step="0.001"/></td></tr>
+					</table>
+				</div>
+				<div id="info-bombilla" style="display:none;" class="trozo-info">
+					<h1>Info bombilla</h1>
+					<table class="table table-bordered">
+						<tr><td>Altura(m)</td><td><input type="text" id="bombilla_altura" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Lumens(lm)</td><td><input type="text" id="bombilla_lumens" class="slider parametro-configuracion" data-min="0" data-max="2000" data-step="10"/></td></tr>
+					</table>
+				</div>
+				<div id="info-habitacion" style="display:none;" class="trozo-info">
+					<h1>Info habitación</h1>
+					<table class="table table-bordered">
+						<tr><td>Altura paredes(m)</td><td><input type="text" id="habitacion_alturaparedes" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Revestimiento suelo</td><td><input type="text" class="parametro-configuracion textura" id="habitacion_revestimientosuelo"/></td></tr>
+						<tr><td>Revestimiento paredes</td><td><input type="text" class="parametro-configuracion textura" id="habitacion_revestimientoparedes"/></td></tr>
+						<tr><td>Las paredes tienen cenefa</td><td><input type="checkbox" id="habitacion_tienecenefa" class="parametro-configuracion"/></td></tr>
+						<tr class="cenefa"><td>Altura cenefa(m)</td><td><input type="text" id="habitacion_alturacenefa" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr class="cenefa"><td>Cenefa</td><td><input type="text" class="parametro-configuracion textura" id="habitacion_cenefa"/></td></tr>
+						<tr class="cenefa"><td>Revestimiento sobre cenefa</td><td><input type="text" class="parametro-configuracion textura" id="habitacion_revestimientosobrecenefa"/></td></tr>
+					</table>
+				</div>
+				<div id="info-columna" style="display:none;" class="trozo-info">
+					<h1>Info columna</h1>
+					<table class="table table-bordered">
+						<tr><td>Alto(m)</td><td><input type="text" id="columna_alto" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Ancho(m)</td><td><input type="text" id="columna_ancho" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Altura(m)</td><td><input type="text" id="columna_altura" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+					</table>
+				</div>
+				<div id="info-puerta" style="display:none;" class="trozo-info">
+					<h1>Info puerta</h1>
+					<table class="table table-bordered">
+						<tr><td>Alto(m)</td><td><input type="text" id="puerta_alto" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Ancho(m)</td><td><input type="text" id="puerta_ancho" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Distancia a pared izda.(m)</td><td><input type="text" id="puerta_distanciaparedizda" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Pomo a la izda</td><td><input type="checkbox" id="puerta_pomoalaizda" class="parametro-configuracion"/></td></tr>
+						<tr><td>Nº hojas</td><td><select id="puerta_numerohojas" class="parametro-configuracion">
+							<option value="0">Corredera</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select></td></tr>
+					</table>
+				</div>
+				<div id="info-ventana" style="display:none;" class="trozo-info">
+					<h1>Info ventana</h1>
+					<table class="table table-bordered">
+						<tr><td>Altura(m)</td><td><input type="text" id="ventana_altura" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Alto(m)</td><td><input type="text" id="ventana_alto" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Ancho(m)</td><td><input type="text" id="ventana_ancho" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Distancia pared izda.(m))</td><td><input type="text" id="ventana_distanciaparedizda" class="spinner parametro-configuracion" data-min="0" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Pomo a la izda.</td><td><input type="checkbox" id="ventana_pomoalaizda" class="parametro-configuracion"/></td></tr>
+						<tr><td>Nº hojas</td><td><select id="ventana_numerohojas" class="parametro-configuracion">
+							<option value="0">Corredera</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select></td></tr>
+					</table>
+				</div>
+				<div id="info-pared" style="display:none;" class="trozo-info">
+					<h1>Info pared</h1>
+					<div id="toolbar-pared" class="btn-group">
+						  <button class="btn hint--bottom" id="botoneliminarpared" data-hint="Eliminar pared"><i class="icon-remove"></i></button>
+						  <button class="btn hint--bottom" id="botondividirpared" data-hint="Dividir pared"><img src="img/<img src="img/glyphicons_231_sun.png" style="width:14px;height:14px;"></button>
+					</div>
+					
+					<table class="table table-bordered">
+						<tr><td>Longitud(m)</td><td><input type="text" id="pared_longitud" class="spinner parametro-configuracion" data-min="0" data-max="30" data-step="0.1"/></td></tr>
+					</table>
+				</div>
+				<div id="info-plano" style="display:none;" class="trozo-info">
+					<h1>Info plano</h1>
+					<table class="table table-bordered">
+						<tr><td>Zoom</td><td><input type="text" id="plano_zoom" class="slider parametro-configuracion" data-min="0.2" data-max="3" data-step="0.1"/></td></tr>
+						<tr><td>Luz ambiente</td><td><input type="checkbox" id="plano_luzambiente" class="parametro-configuracion"/></td></tr>
+						<tr><td>Luz solar</td><td><input type="checkbox" id="plano_luzsolar" class="parametro-configuracion"/></td></tr>
+						<tr><td>Pintar techo</td><td><input type="checkbox" id="plano_pintartecho" class="parametro-configuracion"/></td></tr>
+						<tr><td>Turbidity</td><td><input type="text" id="plano_turbidity" class="slider parametro-configuracion" data-min="2" data-max="100" data-step="0.5"/></td></tr>
+						<tr><td>Dirección sol</td><td><input type="text" id="plano_direccionsol" class="parametro-configuracion"/></td></tr>
+						<tr><td>Extra atmosférico</td><td><input type="checkbox" id="plano_extraatmosferico" class="parametro-configuracion"/></td></tr>
+						<tr><td>Modelo luz solar</td><td><select id="plano_modeloluzsolar" class="parametro-configuracion"><option value="original">original</option><option value="captured-simulation">captured-simulation</option></select></td></tr>
+						<tr><td>Tonemapping</td><td><select id="plano_tonemapping" class="parametro-configuracion"><option value="camera">Camera</option><option value="reinhard">Reinhard</option><option value="linear">Linear</option></select></td></tr>
+						<tr class="info-tonemapping camera"><td>Función respuesta</td><td><select id="plano_tmcamera_funcionrespuesta" class="parametro-configuracion"></select></td></tr>
+						<tr class="info-tonemapping camera"><td>EV adjust</td><td><input type="text" id="plano_tmcamera_evadjust" class="slider parametro-configuracion" data-min="0" data-max="100" data-step="1"/></td></tr>
+						<tr class="info-tonemapping camera"><td>Film ISO</td><td><input type="text" id="plano_tmcamera_filmiso" class="slider parametro-configuracion" data-min="0" data-max="100" data-step="1"/></td></tr>
+						<tr class="info-tonemapping reinhard"><td>Burn</td><td><input type="text" id="plano_tmreinhard_burn" class="slider parametro-configuracion" data-min="0" data-max="20" data-step="1"/></td></tr>
+						<tr class="info-tonemapping reinhard"><td>Pre scale</td><td><input type="text" id="plano_tmreinhard_prescale" class="slider parametro-configuracion" data-min="0.1" data-max="5" data-step="0.1"/></td></tr>
+						<tr class="info-tonemapping reinhard"><td>Post scale</td><td><input type="text" id="plano_tmreinhard_postscale" class="slider parametro-configuracion" data-min="0.1" data-max="5" data-step="0.1"/></td></tr>
+						<tr class="info-tonemapping linear"><td>Scale</td><td><input id="plano_tmlinear_scale" type="text" class="slider parametro-configuracion" data-min="1" data-max="5000" data-step="1"/></td></tr>
+					</table>
+				</div>
+				<div id="info-modelo" style="display:none;" class="trozo-info">
+					<h1>Info modelo</h1>
+					<div id="toolbar-modelo" class="btn-group">
+						  <button class="btn hint--bottom" id="botoneliminarmodelo" data-hint="Eliminar modelo"><i class="icon-remove"></i></button>
+						  <button class="btn hint--bottom" id="botondividirpared" data-hint="Dividir pared"><img src="img/<img src="img/glyphicons_231_sun.png" style="width:14px;height:14px;"></button>
+					</div>
+					
+					<table>
+						<tr><td>Artículo</td><td><input type="text" class="parametro-configuracion articulo" id="modelo_articulo"/></td></tr>
+						<tr><td>Altura(m)</td><td><input type="text" id="modelo_altura" class="spinner parametro-configuracion"/></td></tr>
+					</table>
+				</div>		
+		
+		</div>
+
+	</div>
+
+
+<div id="botontuopinion" style="display: none;"><br/><br/>TU<br/>OPINIÓN!</div>
+
+
+<div id="modal-background" class="modal-background" style="position: absolute; display: none; left: 0px; top: 0px; opacity: 0.5; width: 1366px; height: 667px; background-color: #6A6A6A;"></div>
+<div id="modal-contenedor" class="modal-contenedor" style="display: none; position: absolute; left: 399px; top: 193px; width: 568px; height: 280px;">
+	<div class="modal-contenido" id="modal-contenido" style="display: block;">
+	</div>
+	<a href="#" class="modal-cerrar"  id="modal-cerrar"></a>
+</div>
+
+<div id="espera-background" class="espera-background" style="position: absolute; display: none; left: 0px; top: 0px; opacity: 0.5; width: 1366px; height: 667px;"></div>
+<div id="espera-contenedor" class="espera-contenedor" style="display: none; position: absolute; left: 399px; top: 193px; width: 568px; height: 280px;">
+	<div class="espera-contenido" id="espera-contenido" style="display: block;">
+		<div class="espera-mensaje" id="espera-mensaje" style="display: block;"></div>
+		<div class="espera-progreso" id="espera-progreso" style="display: block;"></div>
+	</div>
+</div>
+
+
+<div id="seleccionarticulo-background" class="seleccionarticulo-background" style="position: absolute; display: none; left: 0px; top: 0px; opacity: 0.5; width: 1366px; height: 667px;"></div>
+<div id="seleccionarticulo-contenedor" class="seleccionarticulo-contenedor" style="display: none; position: absolute; right: 200px; top: 193px; width: 300px; bottom: 20px;">
+	<div class="seleccionarticulo-contenido" id="seleccionarticulo-contenido" style="position: absolute; left: 20px; top: 20px; right: 20px; bottom: 20px; display: block; padding: 0px;">
+	</div>
+	<a href="#" class="seleccionarticulo-cerrar"></a>
+</div>
+
+<div id="log" style="position:absolute; left: 300px; right: 0px; bottom: 0px; height: 200px; background-color: #eaeaea; opacity:0.8;filter:alpha(opacity=80); display: block; overflow: scroll;"></div>
+
+<div style="display:none;">
+
+<script type="text/html" id="divlogin">
+	<h2>Login</h2>
+	<table width="100%"><tr><td valign="top" style="border-right: 1px solid #a1a1a1; width: 50%; padding: 20px;">
+	<p>Todavia no soy usuario.</p>
+	<input type="button" id="login-botonregistro" value="Quiero registrarme">
+</td><td  style="width: 50%; padding: 20px;">
+	<table>
+		<tr><td style="text-align:right;">Tu email:</td><td><input type="text" name="login" id="login-login"></td><tr>
+		<tr><td style="text-align:right;">Año. nacimiento:</td><td><input type="password" name="password" id="login-password"></td></tr>
+	</table>
+	<input type="button" id="login-botonlogin" value="Login" style="float:right;">
+</td></tr></table>	
+</script>
+
+<script type="text/html" id="divregistro">
+	<h2>Nuevo usuario</h2>
+	<table>
+		<tr><td  style="text-align:right;">Email:</td><td><input type="text" name="email" id="registro-email"></td><tr>
+		<tr><td  style="text-align:right;">Nombre:</td><td><input type="text" name="nombre" id="registro-nombre"></td><tr>
+		<tr><td  style="text-align:right;">Apelidos:</td><td><input type="text" name="apellidos" id="registro-apellidos"></td><tr>
+		<tr><td  style="text-align:right;">F. nacimiento (formato dd/MM/yyyy)</td><td><input type="text" name="nacimiento" id="registro-nacimiento"></td></tr>
+		<tr><td  style="text-align:right;">Cód. postal:</td><td><input type="text" name="cp" id="registro-cp"></td><tr>
+	</table>
+	<input type="button" id="registro-botonregistro" value="Registrarme" style="float:right;">
+</script>
+
+
+<script type="text/html" id="divabrir">
+	<h2>Selecciona un archivo...</h2>
+	<div id="abrir-resultado" style="overflow: auto;">
+			
+	</div>
+</script>
+
+<script type="text/html" id="divcolarenders">
+	<h2>Renderizados en curso o pendientes...</h2>
+	<div id="cola-resultado" style="overflow: auto;">
+			
+	</div>
+</script>
+
+<script type="text/html" id="divnuevodisenyo">
+	<!--
+	protected static final int PLANO_I2 = 0;
+	protected static final int PLANO_CUADRADO = 1;
+	protected static final int PLANO_I = 2;
+	protected static final int PLANO_L = 3;
+	protected static final int PLANO_L2 = 4;
+	protected static final int PLANO_R= 5;
+	protected static final int PLANO_R2 = 6;
+	protected static final int PLANO_T = 7;
+
+-->
+	<h2>Selecciona el tipo de habitación</h2>
+	<table>
+		<tr>
+			<td><img src="img/patron_cuadrado.jpg" class="boton-seleccionpatron" data-id="1"></td>
+			<td><img src="img/patron_i.jpg" class="boton-seleccionpatron" data-id="2"></td>
+			<td><img src="img/patron_-.jpg" class="boton-seleccionpatron" data-id="0"></td>
+			<td><img src="img/patron_t.jpg" class="boton-seleccionpatron" data-id="7"></td>
+		</tr>
+		<tr>
+			<td><img src="img/patron_l.jpg" class="boton-seleccionpatron" data-id="3"></td>
+			<td><img src="img/patron_l2.jpg" class="boton-seleccionpatron" data-id="4"></td>
+			<td><img src="img/patron_r.jpg" class="boton-seleccionpatron" data-id="5"></td>
+			<td><img src="img/patron_r2.jpg" class="boton-seleccionpatron" data-id="6"></td>
+		</tr>
+	</table>
+	<a id="babrir">Abrir un plano guardado</a>
+</script>
+
+<script type="text/html" id="divperfil">
+	<h2>Datos usuario</h2>
+	<table>
+		<tr><td  style="text-align:right; width: 140px;">Login:</td><td><input type="text" name="login" id="perfil-login" disabled="disabled"></td><tr>
+		<tr><td  style="text-align:right;">Email:</td><td><input type="text" name="email" id="perfil-email"></td><tr>
+		<tr><td  style="text-align:right;">Nombre:</td><td><input type="text" name="nombre" id="perfil-nombre"></td><tr>
+		<tr><td  style="text-align:right;">Apelidos:</td><td><input type="text" name="apellidos" id="perfil-apellidos"></td><tr>
+		<tr><td  style="text-align:right;">F. nacimiento (formato dd/MM/yyyy):</td><td><input type="text" name="nacimiento" id="perfil-nacimiento"></td></tr>
+		<tr><td  style="text-align:right;">Logo:</td><td><div id="perfil-imagenuploader" style='width:400px;'></div><img id="perfil-imagen" src=""/></td><tr>
+		<tr><td  style="text-align:right;">Créditos restantes:</td><td nowrap="nowrap"><div id="perfil-creditos" style="font-size: 20px; font-weight: bold;"></div><input type="button" id="perfil-botoncomprar" value="Cambiar perfil"></td></tr>
+	</table>
+	<input type="button" id="perfil-botongrabar" value="Grabar" style="float:right;">
+</script>
+
+<script type="text/html" id="divcompra">
+	<h2>Comprar créditos</h2>
+	<table>
+		<tr><td  style="text-align:right;">Cuantos créditos quieres comprar?:</td><td nowrap="nowrap"><select name="compra-euros" id="compra-euros">
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="30">30</option>
+				<option value="40">40</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+</select> EUROS</td><tr>
+	</table>
+	<input type="button" id="compra-botoncomprar" value="Comprar con tarjeta de crédito" style="float:right;">
+</script>
+
+<script type="text/html" id="divarticulos">
+
+			<h4>uhwsuqwhsqwhscabecera</h4>
+		
+
+				<ul id="mistabs-uhwsuqwhsqwhs" class="nav nav-tabs">
+					<!--					
+					<li class="active"><a href="#catalogo-uhwsuqwhsqwhs" data-toggle="tab">Catálogo</a></li>
+-->
+					<li class="active"><a href="#marcas-uhwsuqwhsqwhs" data-toggle="tab">Catálogo</a></li>
+<!--
+					<li><a href="#familias-uhwsuqwhsqwhs" data-toggle="tab">Familias</a></li>
+-->
+					<li><a href="#buscar-uhwsuqwhsqwhs" data-toggle="tab">Buscar</a></li>
+					<li><a href="#favoritos-uhwsuqwhsqwhs" data-toggle="tab" id="tabfavoritos-uhwsuqwhsqwhs"><i class="icon-heart"></i></a></li>
+				</ul>
+
+				<div class="tabbable">
+					<div class="tab-content" style="position: absolute; left: 2px; top: 81px; right: 2px; bottom: 0px; background-color: white; margin-left: 2px; margin-right: 2px; margin-bottom: 2px; padding: 3px;">
+<!--
+						<div class="tab-pane active" id="catalogo-uhwsuqwhsqwhs">
+							<div	id="catalogo-arbol-uhwsuqwhsqwhs">
+									<div style="height: 20px; padding-left: 0px;"><a href='#' class='catalogo-nivel' data-id='' data-nombre='Todo' data-nivel='0'><i class='icon-folder-open'></i> Todo</a></div>						
+							</div>
+
+								<div id="catalogo-lista-uhwsuqwhsqwhs" style="position: absolute; left: 0px; top: 81px; right: 0px; bottom: 0px; overflow: auto; padding-left: 0px;" class="catalogo-lista">
+								</div>
+								
+						</div>
+-->
+						<div class="tab-pane active" id="marcas-uhwsuqwhsqwhs">
+							<div	id="marcas-arbol-uhwsuqwhsqwhs">
+									<div style="height: 20px; padding-left: 0px;"><a href='#' class='catalogo-nivel' data-id='' data-nombre='Todo' data-nivel='0'><i class='icon-folder-open'></i> Todo</a></div>						
+							</div>
+
+								<div id="marcas-lista-uhwsuqwhsqwhs" style="position: absolute; left: 0px; top: 81px; right: 0px; bottom: 0px; overflow: auto; padding-left: 0px;" class="catalogo-lista">
+								</div>
+								
+						</div>
+						<div class="tab-pane" id="familias-uhwsuqwhsqwhs">
+							<div	id="familias-arbol-uhwsuqwhsqwhs">
+									<div style="height: 20px; padding-left: 0px;"><a href='#' class='catalogo-nivel' data-id='' data-nombre='Todo' data-nivel='0'><i class='icon-folder-open'></i> Todo</a></div>						
+							</div>
+
+								<div id="familias-lista-uhwsuqwhsqwhs" style="position: absolute; left: 0px; top: 81px; right: 0px; bottom: 0px; overflow: auto; padding-left: 0px;" class="catalogo-lista">
+								</div>
+								
+						</div>
+						<div class="tab-pane" id="buscar-uhwsuqwhsqwhs">
+							
+							<div class="input-append">
+								  <input class="span2" id="q-uhwsuqwhsqwhs" type="text" style="width: 141px;">
+								  <button class="btn" type="button" id="buscar-uhwsuqwhsqwhs">Buscar</button>
+							</div>
+							
+							<div style="overflow: auto; position: absolute; bottom: 0px; left: 0px; right: 0px; top: 31px;" id="encontrados-uhwsuqwhsqwhs">
+							</div>							
+							
+						</div>
+						<div class="tab-pane" id="favoritos-uhwsuqwhsqwhs">
+							<div style="overflow: auto; position: absolute; bottom: 0px; left: 0px; right: 0px; top: 2px;" id="listafavoritos-uhwsuqwhsqwhs">
+							
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="ocultar-uhwsuqwhsqwhs" style="position:absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; background-color: #eaeaea; opacity:0.8;filter:alpha(opacity=80); display: none;"><div style="position: absolute; left: 100px; center; top: 200px; right: 100px;font-weight: bold; color: red;">Deshabilitado durante la edición del alzado de una pared</div></div>
+
+</script>
+
+<script type="text/html" id="divencuesta">
+  <fieldset>
+    <legend>Tu opinión sobre fesKteva</legend>
+    <label>Tu nombre:</label>
+    <input type="text" placeholder="Escribe tu nombre…" id="enc_nombre">
+    <label>Tu email:</label>
+    <input type="text" placeholder="Escribe tu email…" id="enc_email">
+    <label>Valoración general:</label>
+<table>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+		<td>9</td>
+		<td>10</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion1" value="1"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion2" value="2"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion3" value="3"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion4" value="4"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion5" value="5" checked></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion6" value="6"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion7" value="7"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion8" value="8"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion9" value="9"></td>
+		<td><input type="radio" name="enc_valoracion" id="enc_valoracion10" value="10"></td>
+	</tr>
+</table>
+  
+</label>
+    <label>Comentarios:</label>
+    <textarea id="enc_comentarios" style="height: 150px;"></textarea>
+
+    <button type="button" class="btn" id="enc_submit">Enviar</button>
+  </fieldset>
+</script>
+
+<script type="text/html" id="divasignartexurapared">
+  <fieldset>
+    <legend>Textura pared</legend>
+
+				<ul id="tabsasignartexurapared" class="nav nav-tabs">
+					<li class="active"><a href="#interior" data-toggle="tab">Lado interior</a></li>
+					<li><a href="#exterior" data-toggle="tab">Lado exterior</a></li>
+				</ul>
+
+				<div class="tabbable">
+					<div class="tab-content">
+						<div class="tab-pane active" id="interior">
+<table>
+	<tr><td><label>Tipo:</label></td><td>
+    <input type="radio" id="atp_int_tipo_sincenefa" name="paredint_tipo" value="sin"> sin cenefa
+    <input type="radio" id="atp_int_tipo_1cenefa" name="paredint_tipo" value="1"> 1 cenefa
+    <input type="radio" id="atp_int_tipo_2cenefas" name="paredint_tipo" value="2"> 2 cenefas
+</td></tr>
+	<tr><td><label>Rev. s/cenefa 2:</label></td><td><select id="atp_int_rev3" class="selectmaterial pared"><option value="">aaaa</select></select></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td><label>Cenefa 2:</label></td><td><select id="atp_int_cen2" class="selectmaterial cenefa"><option value="">aaaa</select></select></td><td>Altura(m):</td><td><input type="text" id="atp_int_alto_cen2" style="width:30px;"/></td><td>Ancho(m):<input type="text" id="atp_int_ancho_cen2" style="width:30px;"/></td></tr>
+	<tr><td><label>Rev. s/cenefa 1:</label></td><td><select id="atp_int_rev2" class="selectmaterial pared"><option value="">aaaa</select></select></td></tr>
+	<tr><td><label>Cenefa 1:</label></td><td><select id="atp_int_cen1" class="selectmaterial cenefa"><option value="">aaaa</select></select></td><td>Altura(m):</td><td><input type="text" id="atp_int_alto_cen1" style="width:30px;"/></td><td>Ancho(m):<input type="text" id="atp_int_ancho_cen1" style="width:30px;"/></td></tr>
+	<tr><td><label>Rev. b/cenefa 1:</label></td><td><select id="atp_int_rev1" class="selectmaterial pared"><option value="">aaaa</select></select></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+    <button type="button" class="btn" id="atp_int_aplicar_esta">Aplicar a esta pared</button>
+    <button type="button" class="btn" id="atp_int_aplicar_todas">Aplicar a todas las paredes</button>
+						</div>
+						<div class="tab-pane" id="exterior">
+<table>
+	<tr><td><label>Tipo:</label></td><td>
+    <input type="radio" id="atp_ext_tipo_sincenefa" name="paredext_tipo" value="sincenefa"> sin cenefa
+    <input type="radio" id="atp_ext_tipo_1cenefa" name="paredext_tipo" value="1cenefa"> 1 cenefa
+    <input type="radio" id="atp_ext_tipo_2cenefas" name="paredext_tipo" value="2cenefas"> 2 cenefas
+</td></tr>
+	<tr><td><label>Rev. s/cenefa 2:</label></td><td><select id="atp_ext_rev3" class="selectmaterial pared"><option value="">aaaa</select></select></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td><label>Cenefa 2:</label></td><td><select id="atp_ext_cen2" class="selectmaterial cenefa"><option value="">aaaa</select></select></td><td>Altura(m):</td><td><input type="text" id="atp_ext_alto_cen2" style="width:30px;"/></td><td>Ancho(m):<input type="text" id="atp_ext_ancho_cen2" style="width:30px;"/></td></tr>
+	<tr><td><label>Rev. s/cenefa 1:</label></td><td><select id="atp_ext_rev2" class="selectmaterial pared"><option value="">aaaa</select></select></td></tr>
+	<tr><td><label>Cenefa 1:</label></td><td><select id="atp_ext_cen1" class="selectmaterial cenefa"><option value="">aaaa</select></select></td><td>Altura(m):</td><td><input type="text" id="atp_ext_alto_cen1" style="width:30px;"/></td><td>Ancho(m):<input type="text" id="atp_ext_ancho_cen1" style="width:30px;"/></td></tr>
+	<tr><td><label>Rev. b/cenefa 1:</label></td><td><select id="atp_ext_rev1" class="selectmaterial pared"><option value="">aaaa</select></select></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+    <button type="button" class="btn" id="atp_ext_aplicar_esta">Aplicar a esta pared</button>
+    <button type="button" class="btn" id="atp_ext_aplicar_todas">Aplicar a todas las paredes</button>
+						</div>
+					</div>
+				</div>
+</table>
+  
+  </fieldset>
+</script>
+
+<script type="text/html" id="divmodificardatosarticulo">
+  <fieldset>
+    <legend>Datos del artículo</legend>
+    <label>Nombre:</label>
+    <input type="text" placeholder="Escribe el nombre del artículo…" id="mod_nombre" style="width: 300px;">
+    <label>Descripción:</label>
+    <textarea placeholder="Escribe la descripción del artículo…" id="mod_descripcion" style="height: 150px; width: 300px"></textarea>
+    <label>PVP:</label>
+    <input type="text" placeholder="Escribe el PVP del artículo…" id="mod_pvp">
+
+<div class="radio">
+  <label>
+    <input type="radio" name="mod_estado" id="mod_estadopendiente" value="PENDIENTE" checked>
+    Pendiente
+  </label>
+  <label>
+    <input type="radio" name="mod_estado" id="mod_estadook" value="OK" checked>
+    OK
+  </label>
+  <label>
+    <input type="radio" name="mod_estado" id="mod_estadoaparcado" value="APARCADO" checked>
+    Aparcado
+  </label>
+  <label>
+    <input type="radio" name="mod_estado" id="mod_estadorechazado" value="RECHAZADO" checked>
+    Rechazado
+  </label>
+</div>
+
+    <label>---</label>
+    <button type="button" class="btn" id="mod_submit">Grabar</button>
+  </fieldset>
+</script>
+
+<script type="text/html" id="divagrandarpreview">
+	<div id="previewAgrandada" style="overflow: auto; width: 400px; height: 300px;">
+<div style='position:absolute; text-align: center; left: 30px; top: 120px;''>
+			<img src='img/comecocos.gif'><br/>
+			La imagen tarda unos segundos en generarse. Un momento por favor...
+</div>
+	</div>
+</script>
+
+
+<script type="text/html" id="divasignartextura">
+  <fieldset>
+    <legend id="astex_leyenda">Asignando texturas a uihduwehudiwhed</legend>
+
+	<div id="divtexturas" style="height: 200px; overflow: auto;"></div>
+	
+  </fieldset>
+</script>
+
+
+
+<script type="text/html" id="divterminosycondiciones">
+<h3>IMPORTANTE:</h3>
+<p>En FesKteva intentamos que las figuras, colores y datos que aparecen sean lo más aproximado posible a la realidad, pero siempre pueden producirse variaciones respecto al resultado final en la vida real.</p>
+<p>Ni FesKteva ni los fabricantes ni los distribuidores  son responsables en modo alguno de esas diferencias.</p>
+    <button type="button" class="btn" id="leidoyacepto">He entendido y acepto</button>
+</script>
+
+<script type="text/html" id="divsplash">
+	<h2>Bienvenido a la versión BETA de</h2>
+	<br>
+	<img src="img/fesKteva.jpg"></a>
+	<br>
+	<br>
+	<h4>Gracias por ayudarnos con los tests ;)</h4>
+	<br>
+	<br>
+	<a id="botonentrar" class="btn btn-success" style="position: absolute; bottom: 30px; right: 30px;">Entrar en FesKteva >>></a>
+</script>
+
+
+<div id="divvacio"></div>
+
+</div>
+
+
+<div id="divnavegadornosoportado" style="display:none; padding: 10px;position: absolute; width: 600px; height: 400px; background-color: white; border: 2px solid #000000; text-align: center; padding-top: 30px;">
+	<h2>Ups! Lo sentimos, pero FesKteva no funciona correctamente en tu navegador.</h2>
+	<h5>Por favor utiliza Chrome o Firefox.</h5>
+	<br>
+	<table cellpadding="10" style="margin-left: 40px;"><tr><td><a href="https://www.google.com/intl/es/chrome/browser"><img src="img/chrome.png"></a></td><td><a href="http://www.mozilla.org/es-ES/firefox/new/"><img src="img/firefox.png"></a></td></table>
+	<br>
+	<h4>Gracias,</h4>
+	<h4>FesKteva</h4>
+</div>
+
+
+
+<div class="alert" id="msg" style="display: none; position: absolute; left: 400px; top: 60px; right: 400px; ">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <div id="msg-contenido">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+</div>
+	</div>
+
+<script>
+
+var firstDot = window.location.hostname.indexOf('.');
+var tld = ".net";
+var isSubdomain = firstDot < window.location.hostname.indexOf(tld);
+var domain;
+
+if (isSubdomain == true) {
+    domain = window.location.hostname.substring(firstDot == -1 ? 0 : firstDot + 1);
+}
+else {
+  domain = window.location.hostname;
+}
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-41617717-1']);
+_gaq.push(['_setDomainName', domain]);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript';
+  ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
+  'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" output="test-classes" path="test"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwtupload-1.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lib-gwt-svg-0.5.9.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/fskmodelo"/>
+	<classpathentry exported="true" kind="lib" path="war/WEB-INF/lib/gwtquery-1.4.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/draggable-plugin-1.0.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/droppable-plugin-1.0.8.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

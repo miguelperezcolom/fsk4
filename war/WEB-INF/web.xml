@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+         
+         	<listener>
+		<listener-class>fsk4.server.ContextListener</listener-class>
+	</listener>
+	
+	<context-param>
+    <!-- max size of the upload request -->
+    <param-name>maxSize</param-name>
+    <param-value>3145728</param-value>
+  </context-param>
+  <context-param>
+    <!-- Useful in development mode to slow down the uploads in fast networks.
+         Put the number of milliseconds to sleep in each block received in the server.
+         false or 0, means don't use slow uploads  -->
+    <param-name>slowUploads</param-name>
+    <param-value>200</param-value>
+  </context-param>
+
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>fsk4Servlet</servlet-name>
+    <servlet-class>fsk4.server.Fsk4ServiceImpl</servlet-class>
+  </servlet>
+  
+    	<servlet>
+		<servlet-name>fileviewer</servlet-name>
+		<servlet-class>fsk4.server.FileViewerServlet</servlet-class>
+	</servlet>
+  
+  	<servlet>
+		<servlet-name>confirmarpagosermepa</servlet-name>
+		<servlet-class>fsk4.server.ConfirmarPagoSermepaServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+    <servlet-name>uploadServlet</servlet-name>
+    <servlet-class>fsk4.server.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>uploadServlet</servlet-name>
+    <url-pattern>*.gupld</url-pattern>
+  </servlet-mapping>
+  
+	<servlet-mapping>
+    	<servlet-name>confirmarpagosermepa</servlet-name>
+    	<url-pattern>/confirmarpagosermepa</url-pattern>
+  	</servlet-mapping>
+  	  
+  	<servlet-mapping>
+		<servlet-name>fileviewer</servlet-name>
+		<url-pattern>/fileviewer/*</url-pattern>
+	</servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>fsk4Servlet</servlet-name>
+    <url-pattern>/fsk4/fsk4</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

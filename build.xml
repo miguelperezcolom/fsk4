@@ -1,0 +1,78 @@
+<project default="all">    
+	<!--
+	<property name="gwt.args" value="-draftCompile -ea -style pretty -logLevel TRACE -workDir work" />
+	-->
+	<property name="gwt.args" value="-draftCompile -ea -style pretty -logLevel TRACE" />
+	
+	<path id="cp">
+		<path location="war/WEB-INF/classes"></path>
+		<path location="../fskmodelo/bin"></path>
+		<fileset dir="../fskmodelo/endorsed" includes="**/*.jar"/>
+		<fileset dir="../fskmodelo/lib" includes="**/*.jar"/>
+		<fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
+		<fileset dir="gwtlib" includes="**/*.jar"/>
+	</path>
+	
+	<target name="clean">
+		<delete failonerror="false" dir="war/WEB-INF/classes"/>
+		<mkdir dir="war/WEB-INF/classes"/>
+	</target>
+	
+	<target name="compile" depends="clean">
+		<javac encoding="utf-8" destdir="war/WEB-INF/classes" debug="on" optimize="off" deprecation="false">
+			<src path="src"/>
+			<classpath refid="cp"/>
+			<include name="**/*.java"/>
+		</javac>
+			<copy todir="war/WEB-INF/classes" overwrite="yes">
+				<fileset dir="src">
+					<exclude name="**/*.java"/>
+					<exclude name="**/.svn"/>
+				</fileset>
+			</copy>		
+	</target>
+		
+	<target name="copiar_recursos" depends="compile">
+		<copy todir="war/WEB-INF/classes">
+			<fileset dir="src">
+				<exclude name="**/*.java"/>
+				<exclude name="**/.svn"/>
+			</fileset>
+		</copy>
+	</target>	
+
+	  <path id="gwtcp">
+	  	<pathelement location="war/WEB-INF/classes"/>
+	    <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
+		<fileset dir="gwtlib" includes="**/*.jar"/>
+	    <!-- Add any additional non-server libs (such as JUnit) -->
+	  </path>
+
+	  <target name="gwtc" description="GWT compile to JavaScript">
+	    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+	      <classpath>
+	        <pathelement location="src"/>
+	        <pathelement location="../fskmodelo/src"/>
+	        <path refid="cp"/>
+	      </classpath>
+	      <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+	      <jvmarg value="-Xmx512M"/>
+	      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+	      <arg line="${gwt.args}"/>
+	      <arg value="fsk4.Fsk4dev"/>
+	    </java>
+	  </target>
+	
+	<target name="all" depends="copiar_recursos,gwtc">
+	</target>
+	
+	
+	
+	<target name="war" depends="all">
+		<war destfile="../../parasistemas/wst.war">
+		  <fileset dir="war"/>
+		</war>		
+	</target>
+
+            	
+</project>
